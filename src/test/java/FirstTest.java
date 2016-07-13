@@ -1,4 +1,5 @@
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.After;
 import org.junit.Before;
@@ -61,9 +62,28 @@ public class FirstTest {
             URL url = new URL("http://127.0.0.1:4723/wd/hub");
             return new IOSDriver<>(url, getIpadSafariCapabilities());
         }
+        //TODO the below does not currently work - needs to be looked at. So if I run mvn clean test -Dbrowser=android
+            //TODO a failure occurs. Is linked to android emulator / studio not being configured correctly
+        case "android": {
+            URL url = new URL("http://127.0.0.1:4723/wd/hub");
+            return new AndroidDriver(url, getAndroidCapabilities());
+        }
         default: {
             return null;
         }
         }
+    }
+
+    //TODO the below does not currently work - needs to be looked at. So if I run mvn clean test -Dbrowser=android
+        //TODO a failure occurs. Is linked to android emulator / studio not being configured correctly
+    static DesiredCapabilities getAndroidCapabilities() {
+        DesiredCapabilities caps = DesiredCapabilities.android();
+        caps.setCapability("deviceName","Android Emulator");
+        caps.setCapability("deviceType","tablet");
+        caps.setCapability("deviceOrientation", "portrait");
+        caps.setCapability("browserName", "Browser");
+        caps.setCapability("platformVersion", "5.1");
+        caps.setCapability("platformName","Android");
+        return caps;
     }
 }

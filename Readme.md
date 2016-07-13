@@ -55,3 +55,9 @@ To run in junit with debug, configure my junit settings in IntelliJ to the follo
 ![photo](readme_images/junit_intellij_configuration.png)
 
 And then simply add a debug point and run! :-)
+
+
+
+### TODO
+
+Get an Android device up and running
